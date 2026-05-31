@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controle de Almoço</title>
+    
+    <link rel="stylesheet" href="style.css">
+    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+</head>
+<body>
+
+    <div class="container">
+        
+        <div class="logo-area">
+            <img src="logo_zip.jpg" alt="Logotipo">
+        </div>
+
+        <div id="erro-msg" class="card hidden erro-card"></div>
+
+        <div id="tela-login" class="card">
+            <h2>Registro de Almoço</h2>
+            <p>Insira seu CPF para validar.</p>
+            
+            <form id="form-acesso">
+                <div class="input-group">
+                    <label for="cpf">CPF</label>
+                    <input type="text" id="cpf" placeholder="000.000.000-00" maxlength="14" required>
+                </div>
+                <button type="submit" id="btn-validar">VALIDAR ACESSO</button>
+            </form>
+        </div>
+
+        <div id="tela-unidade" class="card hidden">
+            <h2>Local do Almoço</h2>
+            <p>Selecione a unidade onde você está:</p>
+            
+            <div class="unidade-buttons">
+                <button id="btn-sede" class="btn-unidade">SEDE</button>
+                <button id="btn-centro" class="btn-unidade">CENTRO</button>
+            </div>
+            
+            <button id="btn-voltar-unidade" class="btn-secondary btn-pequeno">Voltar</button>
+        </div>
+
+        <div id="loading" class="card hidden">
+            <div class="spinner"></div> <p>Consultando base de dados...</p>
+        </div>
+
+        <div id="tela-sucesso" class="card hidden">
+            
+            <div class="success-header">
+                <span class="material-symbols-outlined check-icon">check_circle</span>
+                <h2>ACESSO LIBERADO</h2>
+            </div>
+            
+            <div class="ticket-info">
+                
+                <div class="info-row">
+                    <span class="label">Nome:</span>
+                    <span class="value" id="res-nome">--</span> </div>
+                
+                <div class="info-row">
+                    <span class="label">Área:</span>
+                    <span class="value" id="res-area">--</span>
+                </div>
+                
+                <div class="info-row">
+                    <span class="label">Unidade:</span>
+                    <span class="value" id="res-unidade">--</span>
+                </div>
+                
+                <div class="info-row destaque">
+                    <span class="label">Horário:</span>
+                    <span class="value" id="res-hora">--</span>
+                </div>
+            </div>
+
+            <button id="btn-novo" class="btn-secondary">Novo Registro</button>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

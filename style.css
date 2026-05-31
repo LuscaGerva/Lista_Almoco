@@ -1,0 +1,210 @@
+/* =========================================================
+   VARIÁVEIS DE CORES
+   Centralizam o esquema de cores para facilitar mudanças
+========================================================= */
+:root {
+    --primary: #1A3666;       /* Azul principal (ex: botões) */
+    --primary-dark: #1A3666;  /* Azul escuro (ex: hover em botões, textos em destaque) */
+    --success: #00A35E;       /* Verde para mensagens de sucesso */
+    --success-dark: #007A4E;  /* Verde escuro para contraste */
+    --bg-color: #0b172b;      /* Cor de fundo base (caso a imagem falhe) */
+    --white: #ffffff;
+    --text: #333333;          /* Cor padrão de texto */
+    --gray: #888888;          /* Cor para textos secundários e subtítulos */
+}
+
+/* =========================================================
+   RESETS E CONFIGURAÇÕES GLOBAIS
+========================================================= */
+* { 
+    box-sizing: border-box; /* O padding não aumenta o tamanho total do elemento */
+    font-family: 'Segoe UI', sans-serif; 
+}
+
+/* =========================================================
+   ESTRUTURA PRINCIPAL (BODY E CONTAINER)
+========================================================= */
+body {
+    /* --- CONFIGURAÇÃO DA IMAGEM DE FUNDO --- */
+    background-color: var(--bg-color); 
+    
+    /* Substitua a URL abaixo pelo link da sua imagem */
+    background-image: url('Fundo-UniFecaf.png');
+    
+    background-size: cover;      /* Faz a imagem cobrir toda a tela */
+    background-position: center; /* Centraliza a imagem */
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* Deixa a imagem estática ao rolar a página */
+    
+    /* Centralização do conteúdo usando Flexbox */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Ocupa 100% da altura visível da tela */
+    margin: 0;
+    padding: 20px;
+}
+
+/* Overlay escuro opcional sobre o fundo (atualmente transparente com rgba 0,0,0,0) */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0);
+    z-index: -1; /* Fica atrás de todo o conteúdo */
+}
+
+/* Container que segura o logo e as telas */
+.container { 
+    width: 100%; 
+    max-width: 400px; /* Limite de largura para evitar que fique enorme no PC */
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    gap: 20px; /* Espaçamento entre o logo e o card */
+    z-index: 1; /* Garante que fique acima da imagem de fundo */
+}
+
+/* =========================================================
+   ESTILOS DE COMPONENTES VISUAIS (Cards, Logo, Textos)
+========================================================= */
+.logo-area img { 
+    max-height: 200px; 
+    border-radius: 50%; /* Deixa a imagem arredondada */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3); /* Sombra suave no logo */
+}
+
+/* Painel branco principal (Login, Unidade, Sucesso...) */
+.card {
+    background: var(--white);
+    padding: 30px;
+    border-radius: 12px; /* Cantos arredondados */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2); /* Sombra para destacar do fundo */
+    width: 100%;
+    text-align: center;
+}
+
+h2 { color: var(--primary-dark); margin-top: 0; }
+p { color: var(--gray); margin-bottom: 25px; }
+
+/* =========================================================
+   FORMULÁRIO, INPUTS E BOTÕES
+========================================================= */
+.input-group { text-align: left; margin-bottom: 20px; }
+.input-group label { display: block; font-weight: bold; color: var(--primary-dark); margin-bottom: 5px; }
+
+input[type="text"] {
+    width: 100%; 
+    padding: 12px; 
+    font-size: 18px;
+    border: 2px solid #ddd; 
+    border-radius: 8px;
+    text-align: center; 
+    outline: none; 
+    color: var(--primary-dark);
+}
+/* Efeito ao clicar no campo de texto */
+input[type="text"]:focus { border-color: var(--primary); }
+
+/* Estilo padrão de botão */
+button {
+    width: 100%; 
+    padding: 15px; 
+    font-size: 16px; 
+    font-weight: bold;
+    border: none; 
+    border-radius: 8px; 
+    cursor: pointer; 
+    text-transform: uppercase;
+}
+
+/* Botão principal de Validação */
+#btn-validar { background-color: var(--primary); color: white; transition: 0.3s; }
+#btn-validar:hover { background-color: var(--primary-dark); }
+
+/* Botões secundários (Voltar, Novo Registro) com fundo transparente e borda */
+.btn-secondary { background: transparent; border: 2px solid var(--primary-dark); color: var(--primary-dark); margin-top: 20px; }
+.btn-pequeno { padding: 10px; margin-top: 15px; font-size: 14px; }
+
+/* Botões da Tela de Unidade (Lado a lado usando flexbox) */
+.unidade-buttons {
+    display: flex;
+    gap: 10px; /* Espaço entre os botões Sede e Centro */
+    margin-top: 10px;
+}
+.btn-unidade {
+    flex: 1; /* Faz os botões ocuparem metades iguais do espaço */
+    background-color: var(--primary);
+    color: white;
+    transition: 0.3s;
+}
+.btn-unidade:hover { background-color: var(--primary-dark); }
+
+/* =========================================================
+   CLASSES UTILITÁRIAS E COMPONENTES ESPECÍFICOS
+========================================================= */
+
+/* Classe para ocultar elementos (essencial para a troca de telas via JS) */
+.hidden { display: none !important; }
+
+/* Mensagem de Erro com estilo de alerta */
+.erro-card { 
+    color: #d93025; 
+    background: #fce8e6; 
+    padding: 15px; 
+    font-weight: bold;
+    border-left: 5px solid #d93025; /* Faixa lateral vermelha */
+}
+
+/* Efeito de Loading (Círculo giratório) */
+.spinner {
+    border: 4px solid #f3f3f3; 
+    border-top: 4px solid var(--primary);
+    border-radius: 50%; 
+    width: 30px; 
+    height: 30px;
+    animation: spin 1s linear infinite; /* Animação infinita em loop */
+    margin: 0 auto 10px; /* Centraliza a bolinha */
+}
+/* Keyframes definindo os quadros de giro de 0 a 360 graus */
+@keyframes spin { 
+    0% { transform: rotate(0deg); } 
+    100% { transform: rotate(360deg); } 
+}
+
+/* Estilos específicos da Tela de Sucesso (Ticket) */
+#tela-sucesso { border-top: 6px solid var(--success); } /* Borda verde no topo do card */
+.success-header .check-icon { font-size: 64px; color: var(--success); }
+.success-header h2 { color: var(--success-dark); }
+
+/* Informações estilo cupom/recibo */
+.ticket-info { 
+    text-align: left; 
+    background: #f8fcfb; 
+    padding: 15px; 
+    border-radius: 8px; 
+    border: 1px solid #e0e0e0; 
+}
+.info-row { display: flex; justify-content: space-between; margin-bottom: 12px; }
+.info-row .value { font-weight: bold; color: var(--primary-dark); }
+.destaque { color: var(--success-dark); font-size: 1.1em; } /* Destaque na hora liberada */
+
+/* =========================================================
+   AJUSTES PARA DISPOSITIVOS MÓVEIS (Media Query)
+========================================================= */
+@media (max-width: 480px) {
+    /* Diminui espaços em telas bem pequenas (ex: smartphones antigos) */
+    .card {
+        padding: 20px;
+    }
+    
+    /* Reduz o logotipo um pouco */
+    .logo-area img {
+        max-height: 150px; 
+    }
+
+    /* Reduz o tamanho do título */
+    h2 {
+        font-size: 1.5rem; 
+    }
+}
