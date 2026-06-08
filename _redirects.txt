@@ -1,1 +1,0 @@
-/api/valida-cpf    https://script.google.com/macros/s/urlGoogleAppsSCript/exec    200
